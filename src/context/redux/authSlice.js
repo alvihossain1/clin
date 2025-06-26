@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initValue = {
-    name: null,
     email: null,
-    token: null,
+    idToken: null,
+    access_token: null,
+    refresh_token: null,
 }
 
 const initState = JSON.parse(sessionStorage.getItem("user") || JSON.stringify(initValue))
@@ -13,7 +14,9 @@ const authSlice = createSlice({
     initialState: initState,
     reducers: {
         signIn: (state, actions) => {
-            state = { name: 'Alvi Hossain', email: actions.payload.email, token: "asfasfavvz3" }
+            const data = actions.payload
+            console.log("PAYLOAD", data)
+            state = { email: data.email, idToken: data.idToken, access_token: data.access_token, refresh_token: data.refresh_token }
             sessionStorage.setItem("user", JSON.stringify(state))
         },
         signOut: (state) => {

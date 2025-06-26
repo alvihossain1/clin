@@ -19,8 +19,7 @@ export default function Main() {
                 
                 {auth?.email && (
                     <div>
-                        <h1 className="text-2xl font-extrabold text-emerald-600 mb-1">Hey {auth.name}</h1>
-                        <h1 className="text-base font-extrabold text-emerald-600 mb-3">{auth.email}</h1>
+                        <h1 className="text-2xl font-extrabold text-emerald-600 mb-1">Hey {auth.email}</h1>
                     </div>
                 )}
                 <h1 className="text-5xl font-extrabold custom-blue-text mb-6">Clin Technologies</h1>

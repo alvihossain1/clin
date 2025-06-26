@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar'
 import { useDispatch } from 'react-redux'
 import { signIn } from '../../context/redux/authSlice'
 import { useNavigate } from 'react-router-dom'
+import { loginAPI } from '../../services/api'
 
 export default function Login() {
 
@@ -10,11 +11,23 @@ export default function Login() {
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [msg, setMsg] = useState("")
 
-    async function userLogin(){
-        dispatch(signIn({email}))
-        navigate("/")
-        navigate(0)
+    async function userLogin() {
+
+        if (!email || !password) return
+
+        const response = await loginAPI({ email, password })
+        console.log("RES", response)
+        if (response?.message === "Logged in successfully") {
+            dispatch(signIn(response))
+            navigate("/")
+            navigate(0)
+        }
+        else {
+            setMsg(response?.message)
+        }
+
     }
 
     return (
@@ -50,7 +63,7 @@ export default function Login() {
                             </div>
 
                             <div>
-                                <button onClick={() => {userLogin()}}  class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                                <button onClick={() => { userLogin() }} class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
                             </div>
                         </div>
 
@@ -58,6 +71,7 @@ export default function Login() {
                             Not a member?
                             <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
                         </p>
+                        {msg && <p className='text-base my-2 text-black'>{msg}</p>}
                     </div>
                 </div>
 
