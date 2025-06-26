@@ -16,7 +16,7 @@ const authSlice = createSlice({
         signIn: (state, actions) => {
             const data = actions.payload
             console.log("PAYLOAD", data)
-            state = { email: data.email, idToken: data.idToken, access_token: data.access_token, refresh_token: data.refresh_token }
+            state = { email: data.email, idToken: data.idToken, access_token: data.accessToken, refresh_token: data.refresh_token }
             sessionStorage.setItem("user", JSON.stringify(state))
         },
         signOut: (state) => {

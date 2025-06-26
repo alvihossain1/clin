@@ -41,3 +41,33 @@ export async function signUpAPI(data) {
             return error.response.data.error
         })
 }
+
+
+export async function getUserAPI(data) {
+    return await axios.get(`${baseURL}/authentication_app/user_profile/`, {
+        headers: {
+            'Authorization': 'Bearer ' + data.token
+        }
+    })
+        .then(function (response) {
+            return response.data
+        })
+        .catch(function (error) {
+            return error.response.data.error
+        })
+}
+
+
+export async function userlogoutAPI(data) {
+    return await axios.post(`${baseURL}/authentication_app/logout/`, {
+        headers: {
+            'Authorization': 'Bearer ' + data.token
+        }
+    })
+        .then(function (response) {
+            return response.data
+        })
+        .catch(function (error) {
+            return error.response.data.error
+        })
+}

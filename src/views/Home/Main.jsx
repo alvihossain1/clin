@@ -2,6 +2,7 @@ import React from 'react'
 import SigninSignupButtons from '../../components/signin-signup-buttons'
 import Navbar from '../../components/Navbar'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 export default function Main() {
 
@@ -10,16 +11,18 @@ export default function Main() {
 
     return (
         <div className="min-h-screen bg-[#0A0F2C] text-white font-sans relative overflow-hidden">
-          
+
             <Navbar />
-      
+
 
             <section className="flex flex-col items-center text-center px-6 py-28 relative z-10">
                 <img className='w-[200px]' src='https://static.vecteezy.com/system/resources/thumbnails/022/719/513/small_2x/online-medical-clinic-online-medical-consultation-tele-medicine-innovative-medical-app-on-a-smartphone-healthcare-and-technology-concept-3d-illustration-png.png' />
-                
+
                 {auth?.email && (
                     <div>
-                        <h1 className="text-2xl font-extrabold text-emerald-600 mb-1">Hey {auth.email}</h1>
+                        <Link to={'/user'}>
+                            <h1 className="text-2xl font-extrabold text-emerald-600 mb-1">Hey {auth.email}</h1>
+                        </Link>
                     </div>
                 )}
                 <h1 className="text-5xl font-extrabold custom-blue-text mb-6">Clin Technologies</h1>
