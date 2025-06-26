@@ -1,0 +1,13 @@
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+.custom-blue-text{
+  color: #4B8CFF
+}
+.animated-card{
+  transition: 0.5s ease;
+}
+.animated-card:hover{
+  transform: translateY(-8px);
+}
